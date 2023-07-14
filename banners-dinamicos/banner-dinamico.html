@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div id="fbits-breadcrumb" class="fbits-breadcrumb bread" data-componente-fbits-id="32" data-componente-fbits-config="">
+    <ol itemscope="" itemtype="http://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+            <a itemprop="item" href="https://loja.yale.com.br/"><span itemprop="name">Home</span></a>
+            <meta itemprop="position" content="1">
+        </li><li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                        <span class="separador"></span>
+                        <a itemprop="item" href="https://loja.yale.com.br/fechadura-digital">
+                            <span itemprop="name">Fechadura Digital</span>
+                        </a>
+                        <meta itemprop="position" content="2">
+                    </li></ol>
+<div class="brand-wrap">
+						<strong>Marca:</strong>
+						
+
+					</div></div>
+   <h1>The Document Object</h1>
+<h2>The createElement() Method</h2>
+
+<p>Create a p element with some text:</p>
+
+<script>
+//identifica elemtnos H1
+var elementosH1 = document.getElementsByTagName("h1");
+
+//identifica elemnto breadcrumbs
+var elementoBreadcrumb = document.getElementById("fbits-breadcrumb");
+
+//Cria elemento img
+  var bannerDinamico = document.createElement("div"); 
+  bannerDinamico.classList = "banner-dinamico";
+  bannerDinamico.setAttribute("id","banner-dinamico");  
+
+//cria link de destino da imagem
+  var a = document.createElement('a');  
+  a.title = "title";
+  a.href = "#";
+  a.id =  "instalacao";
+  bannerDinamico.appendChild(a);
+
+ //cria banner com imagem
+  var img = document.createElement("img");
+
+  if (navigator.userAgentData != undefined && navigator.userAgentData.mobile) {
+    console.log("mobile");
+    img.src = "https://360digital-cdn.s3.us-west-2.amazonaws.com/banners-dinamicos/banner-instalacao-gratis.jpg";  
+    img.setAttribute("style","width: 100%; padding: 10px 0px");
+    bannerDinamico.appendChild(img);   
+    // a.appendChild(img); 
+    
+    // Append to body:
+    elementoBreadcrumb.insertAdjacentElement("afterend", bannerDinamico);
+  }else{
+    console.log("desktop");
+    img.src = "https://360digital-cdn.s3.us-west-2.amazonaws.com/banners-dinamicos/banner-instalacao-gratis-desktop.jpg";
+    img.setAttribute("style","width: 80%; padding: 10px 0px");
+    bannerDinamico.appendChild(img); 
+    // a.appendChild(img);  
+
+    // Append to body:
+    elementosH1[0].insertAdjacentElement("afterend", bannerDinamico);
+  }
+</script>
+</body>
+</html>
