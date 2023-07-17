@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rastreador de Tempo de Sessão</title>
+</head>
+<body>
+  <h1>Bem-vindo ao Meu Site</h1>
+  <p id="session-time">Tempo de Sessão: 0 segundos</p>
+
+  <!-- Declare o objeto dataLayer -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+  </script>
+
+  <script>
+    // Verifica se há um registro de início de sessão no sessionStorage
+    var sessionStartTime = sessionStorage.getItem('sessionStartTime');
+
+    // Se não houver registro, significa que é uma nova sessão, então definimos o início da sessão
+    if (!sessionStartTime) {
+      sessionStartTime = new Date().getTime();
+      sessionStorage.setItem('sessionStartTime', sessionStartTime);
+    }
+
+    function updateSessionTime() {
+      var currentTime = new Date().getTime();
+      var sessionTimeInSeconds = Math.floor((currentTime - sessionStartTime) / 1000);
+      console.log('Tempo de Sessão: ' + sessionTimeInSeconds + ' segundos');
+
+      // Verifica os intervalos desejados e cria eventos personalizados
+      if (sessionTimeInSeconds === 15) {
+        dataLayer.push({ 'event': 'interval15Seconds', 'eventTimeInSeconds': sessionTimeInSeconds });
+        console.log('Evento de 15 segundos');
+      }
+      if (sessionTimeInSeconds === 30) {
+        dataLayer.push({ 'event': 'interval30Seconds', 'eventTimeInSeconds': sessionTimeInSeconds });
+        console.log('Evento de 30 segundos');
+      }
+      if (sessionTimeInSeconds === 60) {
+        dataLayer.push({ 'event': 'interval60Seconds', 'eventTimeInSeconds': sessionTimeInSeconds });
+        console.log('Evento de 60 segundos');
+      }
+      if (sessionTimeInSeconds === 120) {
+        dataLayer.push({ 'event': 'interval120Seconds', 'eventTimeInSeconds': sessionTimeInSeconds });
+        console.log('Evento de 120 segundos');
+      }
+      if (sessionTimeInSeconds === 180) {
+        dataLayer.push({ 'event': 'interval180Seconds', 'eventTimeInSeconds': sessionTimeInSeconds });
+        console.log('Evento de 180 segundos');
+      }
+    }
+
+    function resetSessionTime() {
+      sessionStartTime = new Date().getTime();
+      sessionStorage.setItem('sessionStartTime', sessionStartTime);
+    }
+
+    // Atualiza o tempo de sessão a cada 1 segundo automaticamente
+    setInterval(updateSessionTime, 1000);
+  </script>
+</body>
+</html>
